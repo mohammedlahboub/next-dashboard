@@ -20,3 +20,17 @@ a{
     color: inherit;
     text-decoration: none;
 }
+
+  
+body::-webkit-scrollbar {
+    width: 6px;
+}
+
+body::-webkit-scrollbar-track {
+    border-radius: 0px;
+}
+
+body::-webkit-scrollbar-thumb {
+    border-radius: 0px;
+    background-color: #b7bac1;
+}

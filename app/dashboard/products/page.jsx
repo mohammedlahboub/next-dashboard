@@ -9,7 +9,7 @@ const ProductPage = ()=> {
     <div className={styles.container}>
       <div className={styles.top}>
         <Search placeholder="Search for a product"/>
-        <Link href="/dashboard/product/add">
+        <Link href="/dashboard/products/add">
         <button className={styles.addButton}>Add New</button>
         </Link>
       </div>
@@ -27,9 +27,9 @@ const ProductPage = ()=> {
           <tbody>
             <tr>
               <td>
-                <div className={styles.user}>
-                  <Image src="/noavatar.png" alt="" width={40} height={40} className={styles.userImage} />
-              IPhone
+                <div className={styles.product}>
+                  <Image src="/noproduct.jpg" alt="" width={40} height={40} className={styles.productImage} />
+              IPhone 14
                 </div>
               </td>
               <td>Lorem ipsum dolor sit amet consectetur.</td>

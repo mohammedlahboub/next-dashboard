@@ -19,7 +19,7 @@ const SingleUserPage = () => {
           <input type="email" name="email" placeholder="jhondoe@gmail.com" />
 
           <label > Password</label>
-          <input type="password" name="password" placeholder="djwoie0wijfi" />
+          <input type="password" name="password" />
 
           <label > Phone</label>
           <input type="phone" name="phone" placeholder="+123456789" />

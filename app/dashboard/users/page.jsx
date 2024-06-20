@@ -4,13 +4,13 @@ import Search from '@/app/ui/dashboard/search/search'
 import Image from 'next/image'
 import Link from 'next/link'
 import { fetchUsers } from '@/app/lib/data'
+import { deleteUser } from '@/app/lib/actions'
 
 const UsersPage = async ({ searchParams }) => {
   const q = searchParams?.q || ''
   const page = searchParams?.page || 1
 
   const { count, users } = await fetchUsers(q, page);
-
   return (
     <div className={styles.container}>
       <div className={styles.top}>
@@ -49,7 +49,10 @@ const UsersPage = async ({ searchParams }) => {
                   <Link href={`/dashboard/users/${user.id}`}>
                     <button className={`${styles.button} ${styles.view}`}>View</button>
                   </Link>
-                  <button className={`${styles.button} ${styles.delete}`}>Delete</button>
+                  <form action={deleteUser}>
+                    <input type="hidden" name="id" value={user.id} />
+                    <button className={`${styles.button} ${styles.delete}`}>Delete</button>
+                  </form>
                 </div>
               </td>
             </tr>

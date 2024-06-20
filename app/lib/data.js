@@ -38,3 +38,25 @@ export const fetchProducts = async (q, page) => {
     throw new Error("Faild To Fetch Products!");
   }
 };
+
+export const fetchUser = async (id) => {
+  try {
+    connectToDB();
+    const user = await User.findById(id);
+    return user;
+  } catch (err) {
+    console.log(err);
+    throw new Error("Faild To Fetch User!");
+  }
+};
+
+export const fetchProduct = async (id) => {
+  try {
+    connectToDB();
+    const product = await Product.findById(id);
+    return product;
+  } catch (err) {
+    console.log(err);
+    throw new Error("Faild To Fetch Product!");
+  }
+};

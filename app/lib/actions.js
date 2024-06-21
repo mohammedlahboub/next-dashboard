@@ -4,6 +4,7 @@ import { Product, User } from "./models";
 import { connectToDB } from "./utils";
 import { redirect } from "next/navigation";
 import bcrypt from "bcrypt";
+import { signIn } from "../auth";
 
 export const addUser = async (formData) => {
   const { username, email, password, phone, address, isAdmin, isActive } =
@@ -66,11 +67,13 @@ export const updateUser = async (formData) => {
 
   try {
     connectToDB();
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
     const updateFields = {
       username,
       email,
-      password,
+      password: hashedPassword,
       phone,
       address,
       isAdmin,
@@ -151,4 +154,17 @@ export const deleteProduct = async (formData) => {
   }
 
   revalidatePath("/dashboard/products");
+};
+
+export const authenticate = async (formData) => {
+  const { username, password } = Object.fromEntries(formData);
+
+  try {
+    await signIn("credentials", { username, password });
+  } catch (err) {
+    if (err.message.includes("CredentialsSignin")) {
+      return { error: "Wrong Credentials" };
+    }
+    throw err;
+  }
 };
